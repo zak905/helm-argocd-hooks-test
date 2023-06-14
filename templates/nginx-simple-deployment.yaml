@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-hooks-test
+spec:
+  selector:
+    app: nginx-hooks-test
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-hooks-test
+  labels:
+    name: nginx-hooks-test
+spec:
+  selector:
+    matchLabels:
+      app: nginx-hooks-test
+  template:
+    metadata:
+      labels:
+        app: nginx-hooks-test
+    spec:
+      containers:
+      - image: nginx:1.25-alpine3.17
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: nginx
+        

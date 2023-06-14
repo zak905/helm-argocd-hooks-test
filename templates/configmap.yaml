@@ -1,0 +1,16 @@
+{{- $retentionConfigMap := lookup "v1" "ConfigMap" "default" "test" -}}
+{{- if not $retentionConfigMap -}}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: test
+  namespace: default
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/resource-policy": keep
+data:
+    #this config map will be updated from the operator, whenever a pipeline is created/updated
+    overrides.yaml: |
+      overrides:
+{{- end -}}
+  
