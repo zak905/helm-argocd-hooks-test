@@ -6,9 +6,10 @@ metadata:
   name: test
   namespace: default
   annotations:
-    "helm.sh/hook": pre-install,pre-upgrade
-    "helm.sh/resource-policy": keep
-    "argocd.argoproj.io/hook": Skip
+    #"helm.sh/hook": pre-install,pre-upgrade
+    #"helm.sh/resource-policy": keep
+    argocd.argoproj.io/sync-options: Delete=false
+    argocd.argoproj.io/hook: PreSync
 data:
     #this config map will be updated from the operator, whenever a pipeline is created/updated
     overrides.yaml: |
