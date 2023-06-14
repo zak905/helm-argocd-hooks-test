@@ -8,6 +8,7 @@ metadata:
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
     "helm.sh/resource-policy": keep
+    "argocd.argoproj.io/hook": Skip
 data:
     #this config map will be updated from the operator, whenever a pipeline is created/updated
     overrides.yaml: |
